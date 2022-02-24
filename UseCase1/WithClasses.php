@@ -12,14 +12,14 @@ class Product
     public string $name;
     public int $amount;
     public float $price;
-    public bool $alcoholOrNot;
+    public bool $isAlcohol;
 
-    function __construct(string $name, int $amount, float $price, bool $alcoholOrNot = false)
+    function __construct(string $name, int $amount, float $price, bool $isAlcohol = false)
     {
         $this->name = $name;
         $this->amount = $amount;
         $this->price = $price;
-        $this->alcoholOrNot = $alcoholOrNot;
+        $this->isAlcohol = $isAlcohol;
     }
 
     public function getPrice()
@@ -29,7 +29,7 @@ class Product
 
     public function getTax()
     {
-        if ($this->alcoholOrNot) {
+        if ($this->isAlcohol) {
             return $this->getPrice() * 0.21;
         } else {
             return $this->getPrice() * 0.06;
