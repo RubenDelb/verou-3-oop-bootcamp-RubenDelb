@@ -14,7 +14,7 @@ $products = [
     ['name' => 'wine bottle', 'amount' => 2, 'price' => 10, 'alcohol' => true]
 ];
 
-// TODO: Calculate the total price
+// Calculate the total price
 $prices = [];
 $taxes = [];
 foreach ($products as $product) {
@@ -25,9 +25,7 @@ foreach ($products as $product) {
         array_push($taxes, ($product['amount'] * $product['price']) * 0.21);
     }
 }
-pre($prices);
-pre($taxes);
 echo "The total price of the products is: €" . array_sum($prices);
 echo "<br>";
-// TODO: Calculate how much of the total price is tax (fruit= 6%, wine= 21%)
+// Calculate how much of the total price is tax (fruit= 6%, wine= 21%)
 echo "The total paid taxes on the products is: €" . array_sum($taxes);
