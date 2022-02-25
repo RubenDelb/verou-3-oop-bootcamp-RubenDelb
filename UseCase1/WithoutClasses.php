@@ -14,18 +14,22 @@ $products = [
     ['name' => 'wine bottle', 'amount' => 2, 'price' => 10, 'alcohol' => true]
 ];
 
+// Calculate how much of the total price is tax (fruit= 6%, wine= 21%)
+function checkTax($product) {
+    if ($product['alcohol'] == false) {
+        return ($product['amount'] * $product['price']) * 0.06;
+    } else {
+        return ($product['amount'] * $product['price']) * 0.21;
+    }
+}
+
 // Calculate the total price
 $prices = [];
 $taxes = [];
-foreach ($products as $product) {
+foreach ($products as $product) {   
     array_push($prices, $product['amount'] * $product['price']);
-    if ($product['alcohol'] == false) {
-        array_push($taxes, ($product['amount'] * $product['price']) * 0.06);
-    } else {
-        array_push($taxes, ($product['amount'] * $product['price']) * 0.21);
-    }
+    array_push($taxes, checkTax($product));
 }
-echo "The total price of the products is: €" . array_sum($prices);
-echo "<br>";
-// Calculate how much of the total price is tax (fruit= 6%, wine= 21%)
-echo "The total paid taxes on the products is: €" . array_sum($taxes);
+
+echo "The total price of the products is: €" . array_sum($prices) 
+    . "<br> The total paid taxes on the products is: €" . array_sum($taxes);
