@@ -43,10 +43,20 @@ class Product
     }
 }
 
-$banana = new Product('banana', 6, 1);
-$apple = new Product('apple', 3, 1.5);
-$wine = new Product('wine', 2, 10, true);
+$basket = [
+    'banana' => new Product('banana', 6, 1),
+    'apple' => new Product('apple', 3, 1.5),
+    'wine' => new Product('wine', 2, 10, true)
+];
 
-echo "Total Price: €" . ($banana->getPrice() + $apple->getPrice() + $wine->getPrice()) . "<br>";
+$totalPrice = 0;
+$totalTax = 0;
 
-echo "The total paid taxes on all your products is: €" . ($banana->getTax() + $apple->getTax() + $wine->getTax());
+foreach ($basket as $i => $product) {
+    $totalPrice += $product->getPrice();
+    $totalTax += $product->getTax();
+}
+
+echo "Total Price: €{$totalPrice} <br>";
+
+echo "The total paid taxes on all your products is: €{$totalTax}";
